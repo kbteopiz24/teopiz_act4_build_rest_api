@@ -1,25 +1,28 @@
-import express from "express";
-import * as dotenv from "dotenv";
-import cors from "cors";
-import helmet from "helmet";
+import express from "express"
+import * as dotenv from "dotenv"
+import cors from "cors"
+import helmet from "helmet"
+import { userRouter } from "./users/user.routes"
+import { productRouter } from "./products/product.routes"
 
 dotenv.config();
 
-const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : null;
-
-if (PORT === null) {
-  console.error("No port value specified. Exiting.");
-  process.exit(1); // Exit the process with an error code
+if (!process.env.PORT) {
+  console.log('No port valie specified...')
 }
 
-const app = express();
+const PORT = parseInt(process.env.PORT as string, 10)
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const app = express()
 
-app.use(cors()); // Configure CORS for specific origins in production
-app.use(helmet());
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(cors())
+app.use(helmet())
+
+app.use('/', userRouter)
+app.use('/', productRouter)
 
 app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
-});
+  console.log(`Server is listening on port ${PORT}`)
+})

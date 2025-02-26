@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "target": "es2020", // Or a suitable target for your environment (e.g., es2022, esnext)
+      "module": "NodeNext",
+      "esModuleInterop": true,  // Important for compatibility with CommonJS modules
+      "strict": true,           // Enable strict type checking (recommended)
+      "outDir": "./dist",       // Output directory for compiled JavaScript files
+      "sourceMap": true        // Generate source maps for debugging
+    },
+    "include": [
+      "src/**/*.ts"           // Include all TypeScript files in the 'src' directory
+    ],
+    "exclude": [
+      "node_modules"          // Exclude the 'node_modules' directory
+    ]
+  }
